@@ -14,18 +14,18 @@ export default NextAuth({
     // ...add more providers here
   ],
 
-  //   callbacks: {
-  //     async session({ session, token, user }) {
-  //       const firestorePremiumStatus = await fetch(`
-  //       https://yscn-modelschool.vercel.app/api/checkPremium/${session.user.email}`).then(
-  //         (res) => res.json().then((data) => (session.user.premiumMeber = data))
-  //       );
-  //       console.log(
-  //         "🚀 ~ file: [...nextauth].js ~ line 21 ~ session ~ firestorePremiumStatus",
-  //         firestorePremiumStatus
-  //       );
+  callbacks: {
+    async session({ session, token, user }) {
+      const firestorePremiumStatus = await fetch(`
+        https://yscn-modelschool.vercel.app/api/checkPremium/${session.user.email}`).then(
+        (res) => res.json().then((data) => (session.user.premiumMeber = data))
+      );
+      console.log(
+        "🚀 ~ file: [...nextauth].js ~ line 21 ~ session ~ firestorePremiumStatus",
+        firestorePremiumStatus
+      );
 
-  //       return session;
-  //     },
-  //   },
+      return session;
+    },
+  },
 });
